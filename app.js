@@ -1,7 +1,8 @@
 // Require express module
 var express = require("express");
+var cors = require('cors')
 var app = express();
-
+app.use(cors())
 // Require body-parser module
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -64,7 +65,7 @@ app.get("/api/:id", function (req, res) {
 app.post("/api/add", function (req, res) {
   var newDriver = new Driver({
     name: req.body.name,
-    brithyear: req.body.birthyear,
+    birthyear: req.body.birthyear,
     country: req.body.country,
     latestconstructor: req.body.latestconstructor
   });
@@ -82,7 +83,7 @@ app.put("/api/update/:id", function (req, res) {
   var id = req.params.id;
 
   Driver.findByIdAndUpdate(id, {
-    name: req.body.name, brithyear: req.body.birthyear,
+    name: req.body.name, birthyear: req.body.birthyear,
     country: req.body.country,
     latestconstructor: req.body.latestconstructor
   }, function (err, results) {
